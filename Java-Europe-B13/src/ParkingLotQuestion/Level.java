@@ -4,7 +4,6 @@ public class Level {
 	private int floor;
 	private ParkingSpot[] spots;
 	private int availableSpots=0;
-	private static final int SPOT_PER_ROW=10;
 	
 	public Level(int floor, int numberOfSpots) {
 		this.floor=floor;
@@ -12,25 +11,30 @@ public class Level {
 		
 		spots = new ParkingSpot[numberOfSpots];
 		
-		int largeSpots = numberOfSpots/4;
-		int motorbikeSpots = numberOfSpots/4;
-		int compactSpots = numberOfSpots - largeSpots- motorbikeSpots;
+		int disabled=10;
+		int largeSpots = numberOfSpots/10;
+		int motorbikeSpots = numberOfSpots/40;
+		int compactSpots = numberOfSpots - largeSpots- motorbikeSpots-10;
 		
-		for (int i = 0; i < numberOfSpots; i++){
+		for (int i = 0; i < numberOfSpots-disabled; i++){
             VehicleSize size = VehicleSize.Motorcycle;
-            System.out.println("motorcycle");
+
             if (i < largeSpots){
                 size = VehicleSize.Large;
-                System.out.println("bus");
+         
             } else if (i< largeSpots+compactSpots){
-            	 System.out.println("car");
+
             	size= VehicleSize.Compact;
             }
+          
             
-            int row = i / SPOT_PER_ROW;
-            
-           	spots[i] = new ParkingSpot(this, row, i, size);
+           	spots[i] = new ParkingSpot(this, i, size, false);
         }
+		for (int i=numberOfSpots-10; i<numberOfSpots; i++) {
+	
+			spots[i] = new ParkingSpot(this, i, VehicleSize.Compact, true);
+			
+		}
 	}
 	
 	public int availableSpots() {
@@ -51,18 +55,13 @@ public class Level {
 	public int findAvailableSpots(Vehicle vehicle){
       
 		int spotsNeeded = vehicle.getSpotsNeeded();
-        int lastRow = -1;
         int spotsFound = 0;
 
         for (int i = 0; i < spots.length; i++){
     	
         	ParkingSpot spot = spots[i];
     			
-    			if (lastRow != spot.getRow()){
-    				spotsFound = 0;
-    				
-    				lastRow = spot.getRow();
-    			}
+
     			if (spot.canFitVehicle(vehicle)){
     				spotsFound++;
     			}
@@ -86,13 +85,16 @@ public class Level {
         
         if (spotNumber < 0)
             return false;
-        System.out.print(",Spot Number " + spotNumber);
+        System.out.print("Spot Number " +spotNumber+" ");
+        
+        vehicle.print();
         
         return parkStartingAtSpot(spotNumber, vehicle);
+      
     }
 	
 	public void spotFreed(){
         availableSpots++;
-        System.out.println("Available Spots in the current level :" + availableSpots);
+        System.out.println("Available Spots in the "+ floor+" level : " + availableSpots);
     }
 }

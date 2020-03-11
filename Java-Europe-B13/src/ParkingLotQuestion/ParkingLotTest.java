@@ -7,14 +7,29 @@ public class ParkingLotTest {
 
 	public static void main(String[] args) {
 		
-	  Level level= new Level(3, 10);
+	  Level level= new Level(1, 100);
 	  
-	  Vehicle vehicle= new Car();
+	  ParkingLot parkingLot = new ParkingLot();
 	  
-	  System.out.println(level.findAvailableSpots(vehicle));
+	  Vehicle vehicle= new Disabled();
+	  
+	  Vehicle vehicle1= new Bus();
+	  
+	  Vehicle vehicle2= new Car();
+	  
+	  System.out.println(level.parkVehicle(vehicle1));
+	  
+	  System.out.println(level.parkVehicle(vehicle));
+	  
+	  System.out.println(level.parkVehicle(vehicle2));
 	  
 	  level.spotFreed();
 	  
+	  Level level2= new Level(2, 100);
+	  level2.spotFreed(); 
+	  
+	  Level level3= new Level(3, 100);
+	  level3.spotFreed(); 
 	}		
 
 }

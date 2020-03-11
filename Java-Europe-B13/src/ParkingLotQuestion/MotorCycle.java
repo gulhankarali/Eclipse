@@ -9,7 +9,7 @@ public class MotorCycle extends Vehicle{
     }
 
     public boolean canFitInSpot(ParkingSpot spot) {
-        return spot.getSize() == VehicleSize.Compact || spot.getSize() == VehicleSize.Motorcycle;
+        return (spot.getSize() == VehicleSize.Compact||spot.getSize() == VehicleSize.Motorcycle)&&(spot.getDisabled()==false);
     }
     
     public void print() {

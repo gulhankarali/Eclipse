@@ -12,6 +12,7 @@ public abstract class Vehicle {
 	
 	protected VehicleSize size;
 	
+	protected boolean isDisabledCar; 
 	
 	
 	public abstract boolean canFitInSpot(ParkingSpot spot);
@@ -22,7 +23,7 @@ public abstract class Vehicle {
 	
 	
 	public void parkInSpot(ParkingSpot s){
-        parkingSpots	.add(s);
+        parkingSpots.add(s);
     }
 
 

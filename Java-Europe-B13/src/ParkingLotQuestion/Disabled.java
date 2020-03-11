@@ -6,12 +6,13 @@ public class Disabled extends Vehicle{
 		
 		 spotsNeeded = 1;
 		 
-	     size = VehicleSize.Disabled;
+	     size = VehicleSize.Compact;
+	     isDisabledCar= true;
 	 }
 
 	 public boolean canFitInSpot(ParkingSpot spot) {
 
-	     return spot.getSize()==VehicleSize.Disabled;
+	     return spot.getSize()==VehicleSize.Compact&&spot.getDisabled()==true;
 
 	 }
 	 

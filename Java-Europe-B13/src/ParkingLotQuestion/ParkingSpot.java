@@ -6,14 +6,18 @@ public class ParkingSpot {
 	private int row;
 	private int spotNumber;
 	private Level level;
+	private boolean isDisabled;
 	
-	public ParkingSpot(Level level, int row,int spotNumber, VehicleSize vehicleSize) {
+	public ParkingSpot(Level level,int spotNumber, VehicleSize vehicleSize,boolean isDisabled) {
 	
 		this.level= level;
-		this.row=row;
 		this.spotNumber=spotNumber;
 		this.spotSize= vehicleSize;
+		this.isDisabled=isDisabled;
 		
+	}
+	public boolean getDisabled() {
+		return isDisabled;
 	}
 	
 	public boolean isAvailable() {
@@ -30,13 +34,11 @@ public class ParkingSpot {
 			return false;	
 		}	
 		this.vehicle=vehicle;
+		
 		vehicle.parkInSpot(this);
+		
 		return true;
 	}
-		
-    public int getRow() {
-        return row;
-    }
 	
 	public int getSpotNumber() {
 		return spotNumber;	
