@@ -9,7 +9,6 @@ public class ParkingLotTest {
 		
 	  Level level= new Level(1, 100);
 	  
-	  ParkingLot parkingLot = new ParkingLot();
 	  
 	  Vehicle vehicle= new Disabled();
 	  
